@@ -152,6 +152,8 @@ featureHeatmap <- function(matSorted,
                            rowOrder) {
   EnrichedHeatmap(mat = matSorted,
                   col = col_fun,
+                  row_order = rowOrder,
+                  column_title = datName,
                   top_annotation = HeatmapAnnotation(enriched = anno_enriched(gp = gpar(col = colour,
                                                                                         lwd = 3),
                                                                               yaxis_side = "right",
@@ -162,14 +164,11 @@ featureHeatmap <- function(matSorted,
                                                                                                  lwd = 2))),
                   top_annotation_height = unit(2, "cm"),
                   width = unit(6, "cm"),
-                  #name = datName,
-                  #name_gp = gpar(fontize = 12),
-                  heatmap_legend_param = list(title_position = "topcenter",
-                                              title = datName,
+                  heatmap_legend_param = list(title = datName,
+                                              title_position = "topcenter",
+                                              title_gp = gpar(font = 2, fontsize = 12),
                                               legend_direction = "horizontal",
-                                              fontsize = 10),
-                  row_order = rowOrder,
-                  column_title = datName,
+                                              labels_gp = gpar(fontsize = 10)),
                   axis_name = c(paste0("-", flankNamePlot),
                                 featureStartLab, featureEndLab,
                                 paste0("+", flankNamePlot)),
@@ -196,7 +195,7 @@ print(getDoParWorkers())
 # ChIP-seq
 pdf(paste0(plotDir, paste0(ChIPseqNames, collapse = "_"), "_around_", featureName,
            "_heatmaps_ordered_by_", libName, "_in_", region, ".pdf"),
-    width = 3*length(ChIPseqNames), height = 10)
+    width = 3*length(ChIPseqNames), height = 8)
 # Doesn't work
 #par(mfrow = c(2, length(ChIPseqNames)/2))
 htmps <- NULL
